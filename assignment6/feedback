@@ -1,0 +1,65 @@
+DONE:
+- In Makefile, it's counterintuitive for a .c file to be compiled into a .o
+  file with a different stem (eg, mymmapio.c -> myio.o).
+
+- In myopen, does not verify success of malloc before using its result.
+
+- Since the struct definition and prototypes are already listed in myio.h, it
+  is redundant (and, indeed, fragile) to duplicate them in mymmapio.c.
+  (Fragile because, if you make changes to one, you need to make changes to
+  the other, and that sort of dependency is always fraught.)
+
+- The values 0 and 1 are so universally accepted for false and true,
+  respectively, that they don't really count as magic numbers and therefore
+  constants are, strictly speaking, unnecessary.  If you feel they add
+  readability, leave them; but know that you will see lots of code that
+  doesn't use them.
+
+- In the case of myread, mmap happens only once in the very first call for a
+  given file.  There already exists a function that gets called once at the
+  beginning of I/O operations on a particular file, so this logic would be
+  more appropriate there.  (Rephrased: conceptually, mmap is part of the
+  "setting things up" phase of doing I/O, therefore it belongs in the "setting
+  things up" function.)
+
+- Since these functions are intended to be used by other programs, it is not
+  their decision whether to exit on failure.  Instead, they should return a
+  suitable error value and let the caller decide what to do.
+
+- Conceptually, the functionality of msync(2) more closely aligns with myflush
+  than mywrite.  Though I don't require its use in this assignment, or its
+  equivalent in assignment 2 because, for our purposes, we're assuming that
+  once we hand data off to the OS, it's been written.  As we will find out
+  next semester, this isn't the case for either write(2) or mmap(2).
+
+- All my read tests fail when there is a null byte in the middle of the data
+  to be read.
+
+- All my write tests fail with either "mmap: Invalid argument" or "ftruncate:
+  Invalid argument".  For what it's worth, I'm opening these files with these
+  flags: O_TRUNC | O_CREAT | O_WRONLY.
+
+- Inconsistent spacing: spaces before/after commas in parameter lists; spaces
+  before open curly braces.
+
+- In mywrite, I don't feel the writing_ptr variable adds much; I would just
+  use "(char *) ptr" as the parameter to mempy.  If you think it's clearer
+  as-is, by all means leave it, but my sense is that this pattern is pretty
+  rare.
+
+- Since these functions are intended to be used by other programs, it is not
+  their decision whether to cause anything to be printed (eg, with perror(3)).
+
+- In various functions, return values of syscalls are checked (good!) and, in
+  the case of error, an informative message is printed (in this assignment,
+  bad!), but often the code proceeds as if nothing at all is amiss (always
+  very, very bad!).
+
+  - mywrite appears to call mmap(2) for every single write.  This defeats the
+  purpose of mapping the file in the first place, which is to minimize the
+  number of syscalls.  Furthermore, since munmap is only ever called once, in
+  myclose, memory is leaked every time mywrite is called.
+
+TO FIX:
+- In test-myio.c, consider the use of the diff(1) program to compare output
+  files.

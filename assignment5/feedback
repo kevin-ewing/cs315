@@ -1,0 +1,38 @@
+#DONE
+- Does not verify success of function calls: eg, fgets(3), open(2), execve(3).
+
+- The function organize_forks does much more than organize; it deserve a name
+  more fitting of its entire responsibility.
+
+- Inconsistent spacing: sometimes spaces are used between function parameters,
+  sometimes not.  (For the record, I *strongly* prefer spaces in this context:
+  parameter lists without spaces are a major pain to read.)
+
+- Relatedly, there are spaces before array indices.  *Not* using spaces here
+  is such a widespread convention that I'm going to require you to follow it.
+
+- Limits length of input to 255 bytes.
+
+- When supplying parameters to a function call, it's quite confusing to me
+  when a single parameter is broken up into multiple lines (eg, the calls to
+  open(2) in organize_forks).  I think it's much clearer to either store the
+  value of that parameter into a single variable or put the line break before
+  the beginning of the expression.
+
+- Does not support a pipeline whose final program's output is redirected to a
+  file (eg, "a | b | c > foo").
+
+- Likewise, does not support a pipeline who first program's input is
+  redirected from a file (eg, "a < foo | b | c").
+
+- Permissions on files created using output redirection are not helpful.
+
+- Does not exit when EOF is reached on input (in some cases, segfaults; in
+  other cases, enters an infinite loop).
+
+- Limits number of pipes to 254. (The solution here is not to make the number
+  bigger; the solution is to figure out how to make the right thing happen
+  without allocating memory relative to the input size. We can discuss
+  strategies if you like.)
+
+

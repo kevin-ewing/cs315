@@ -1,0 +1,7 @@
+Resources Used:
+    https://www.systutorials.com/how-to-get-the-hostname-of-the-node-in-c/
+    https://stackoverflow.com/questions/11198604/c-split-string-into-an-array-of-strings
+    https://stackoverflow.com/questions/2693776/removing-trailing-newline-character-from-fgets-input
+    https://pubs.opengroup.org/onlinepubs/000095399/basedefs/limits.h.html
+    https://stackoverflow.com/questions/33884291/pipes-dup2-and-exec
+    https://stackoverflow.com/questions/30822887/program-stuck-on-pipe-exec-ls-grep-sort

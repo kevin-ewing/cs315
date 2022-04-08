@@ -1,0 +1,13 @@
+List of contributors
+    Kevin Ewing Will Wolf
+    http://xray0.princeton.edu/~phil/Facility/Guides/UnixScripting.html
+    https://www.programiz.com/c-programming/library-function/string.h/strcmp
+    
+Running and testing the program.
+    1. The run.sh script when exicuted will make and run the test by copying 
+    the contents from test_files/test_from.txt to test_files/test_to.txt.
+    
+    2. The test_files/test_to.txt. file contents is then printed on screen to 
+    show that the copy has been made.
+
+    3. The script then uses make clear_out to remove test_files/test_to.txt.

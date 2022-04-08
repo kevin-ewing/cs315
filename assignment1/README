@@ -1,0 +1,8 @@
+For this assignement I used the following resources:
+- Kevin Ewing and Will Wolf
+- MAN pages/documentation on many of the basic C functions
+- https://pubs.opengroup.org/onlinepubs/7908799/xsh/dirent.h.html
+- https://www.gnu.org/software/libc/manual/html_node/Example-of-Getopt.html
+- https://man7.org/linux/man-pages/man2/lstat.2.html
+- https://stackoverflow.com/questions/8465006/how-do-i-concatenate-two-strings-in-c
+- https://stackoverflow.com/questions/45220134/how-to-cast-integer-value-to-pointer-address-without-triggering-warnings
